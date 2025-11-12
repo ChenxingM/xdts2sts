@@ -1,0 +1,27 @@
+[package]
+name = "xdts2sts"
+version = "1.0.0"
+edition = "2021"
+authors = ["XDTS2STS Converter"]
+description = "Convert XDTS/TDTS timesheet files to STS format"
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+encoding_rs = "0.8"
+walkdir = "2.4"
+anyhow = "1.0"
+
+[target.'cfg(windows)'.dependencies]
+winapi = { version = "0.3", features = ["wincon", "winuser", "consoleapi"] }
+
+[profile.release]
+opt-level = "z"       # 优化体积
+lto = true            # Link Time Optimization
+codegen-units = 1     # 更好的优化
+strip = true          # 去除符号信息
+panic = "abort"       # 减小体积
+
+[[bin]]
+name = "xdts2sts"
+path = "src/main.rs"
