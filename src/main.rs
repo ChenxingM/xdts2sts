@@ -13,7 +13,7 @@ use walkdir::WalkDir;
 #[cfg(windows)]
 use winapi::um::consoleapi::AllocConsole;
 #[cfg(windows)]
-use winapi::um::wincon::{FreeConsole, GetConsoleWindow};
+use winapi::um::wincon::{GetConsoleWindow};
 #[cfg(windows)]
 use winapi::um::winuser::{MessageBoxW, MB_ICONINFORMATION, MB_ICONERROR, MB_OK};
 
@@ -26,13 +26,6 @@ fn allocate_console() -> bool {
         }
         // 分配新控制台
         AllocConsole() != 0
-    }
-}
-
-#[cfg(windows)]
-fn free_console() {
-    unsafe {
-        FreeConsole();
     }
 }
 
