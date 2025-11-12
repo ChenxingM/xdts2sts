@@ -247,8 +247,8 @@ fn run() -> Result<()> {
     if is_single_file_mode {
         if total_files > 0 && !all_output_paths.is_empty() {
             for path in &all_output_paths {
-                let size = std::fs::metadata(path)?.len();
-                let file_name = path.file_name().unwrap().to_string_lossy();
+                let _size = std::fs::metadata(path)?.len();
+                let _file_name = path.file_name().unwrap().to_string_lossy();
             }
         } else {
             show_message_box("转换失败", "文件转换失败，请检查文件格式。", true);
