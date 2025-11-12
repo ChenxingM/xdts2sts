@@ -67,8 +67,8 @@ rust-xdts2sts/
 ### 支持的格式
 
 #### 输入格式
-- **XDTS**: OPTPiX SpriteStudio 导出的 JSON 格式
-- **TDTS**: OPTPiX SpriteStudio 导出的 JSON 格式（含多个 timesheet）
+- **XDTS**
+- **TDTS**
 
 #### 输出格式
 -  `*.sts`: ShiraheiTimeSheet 二进制格式

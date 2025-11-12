@@ -187,6 +187,8 @@ fn run() -> Result<()> {
         }
     }
 
+
+
     // 处理拖放的文件夹
     for (folder_idx, input_path) in valid_folders.iter().enumerate() {
         println!("\n{}", "=".repeat(60));
