@@ -65,17 +65,8 @@ pub fn save_sts(timesheet: &Timesheet, output_path: &Path, verbose: bool) -> Res
     file.write_all(&[0x00, 0x00])?;
 
     // === 帧数据区 (layer_count × frame_count × 2 bytes) ===
-
-    for (layer_idx, cells) in all_layers_cells.iter().enumerate() {
-        for (frame_idx, &cell) in cells.iter().enumerate() {
-            if cell > 65535 {
-                anyhow::bail!(
-                    "Cell值超出范围: {} (层{}, 帧{})",
-                    cell,
-                    layer_idx + 1,
-                    frame_idx
-                );
-            }
+    for (_layer_idx, cells) in all_layers_cells.iter().enumerate() {
+        for (_frame_idx, &cell) in cells.iter().enumerate() {
             file.write_all(&cell.to_le_bytes())?;
         }
     }
