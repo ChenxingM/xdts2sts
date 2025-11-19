@@ -165,7 +165,7 @@ fn run() -> Result<()> {
                     "\n[{}/{}] {}",
                     idx + 1,
                     valid_files.len(),
-                    input_path.file_name().unwrap().to_string_lossy()
+                    input_path.file_name().and_then(|n| n.to_str()).unwrap_or("未知文件")
                 );
                 println!("{}", "-".repeat(60));
             }
@@ -213,7 +213,7 @@ fn run() -> Result<()> {
 
         println!("找到 {} 个文件:", timesheet_files.len());
         for f in &timesheet_files {
-            println!("  - {}", f.file_name().unwrap().to_string_lossy());
+            println!("  - {}", f.file_name().and_then(|n| n.to_str()).unwrap_or("未知文件"));
         }
         println!();
 
@@ -229,7 +229,7 @@ fn run() -> Result<()> {
                 "[{}/{}] 正在处理: {}",
                 idx + 1,
                 timesheet_files.len(),
-                ts_file.file_name().unwrap().to_string_lossy()
+                ts_file.file_name().and_then(|n| n.to_str()).unwrap_or("未知文件")
             );
 
             match process_file(&ts_file, Some(&output_dir), false, false) {
@@ -250,7 +250,7 @@ fn run() -> Result<()> {
         if total_files > 0 && !all_output_paths.is_empty() {
             for path in &all_output_paths {
                 let _size = std::fs::metadata(path)?.len();
-                let _file_name = path.file_name().unwrap().to_string_lossy();
+                let _file_name = path.file_name().and_then(|n| n.to_str()).unwrap_or("未知文件");
             }
         } else {
             show_message_box("转换失败", "文件转换失败，请检查文件格式。", true);
@@ -271,7 +271,7 @@ fn run() -> Result<()> {
             let size = std::fs::metadata(path)?.len();
             println!(
                 "  - {} ({} 字节)",
-                path.file_name().unwrap().to_string_lossy(),
+                path.file_name().and_then(|n| n.to_str()).unwrap_or("未知文件"),
                 format_number(size)
             );
         }
@@ -320,7 +320,7 @@ fn process_file(
         let output_name = if timesheets.len() == 1 {
             format!(
                 "{}.sts",
-                input_path.file_stem().unwrap().to_string_lossy()
+                input_path.file_stem().and_then(|n| n.to_str()).unwrap_or("output")
             )
         } else {
             let safe_name: String = ts
@@ -338,7 +338,7 @@ fn process_file(
             };
             format!(
                 "{}_{:03}_{}.sts",
-                input_path.file_stem().unwrap().to_string_lossy(),
+                input_path.file_stem().and_then(|n| n.to_str()).unwrap_or("output"),
                 i,
                 safe_name
             )
@@ -353,7 +353,7 @@ fn process_file(
                 if !verbose && !quiet {
                     println!(
                         "✓ 已转换: {}",
-                        output_path.file_name().unwrap().to_string_lossy()
+                        output_path.file_name().and_then(|n| n.to_str()).unwrap_or("未知文件")
                     );
                 }
             }
