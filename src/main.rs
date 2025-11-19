@@ -323,11 +323,14 @@ fn process_file(
                 input_path.file_stem().unwrap().to_string_lossy()
             )
         } else {
-            let safe_name = ts
+            let safe_name: String = ts
                 .name
-                .replace('/', "_")
-                .replace('\\', "_")
-                .replace(':', "_");
+                .chars()
+                .map(|c| match c {
+                    '/' | '\\' | ':' | '<' | '>' | '"' | '|' | '?' | '*' => '_',
+                    _ => c,
+                })
+                .collect();
             let safe_name = if safe_name.len() > 100 {
                 &safe_name[..100]
             } else {

@@ -22,3 +22,4 @@ Thumbs.db
 *.tdts
 *.sts
 converted_sts/
+.claude
