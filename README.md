@@ -1,5 +1,19 @@
 # XDTS2STS
 
+> **This repository has been archived.**
+>
+> This functionality has been integrated into [sts-rust](https://github.com/ChenxingM/sts-rust).
+> Please use the new repository for updates and support.
+
+---
+
+> **此仓库已归档。**
+>
+> 该功能已被集成到 [sts-rust](https://github.com/ChenxingM/sts-rust) 中。
+> 请使用新仓库获取更新和支持。
+
+---
+
 XDTS/TDTS 转换 STS 摄影表转换工具
 
 ## 📋 系统要求
@@ -75,7 +89,7 @@ rust-xdts2sts/
 
 ## 🤝 贡献
 
-欢迎提交 Issue 和 Pull Request！
+此仓库已归档，不再接受新的贡献。请访问 [sts-rust](https://github.com/ChenxingM/sts-rust) 提交 Issue 和 Pull Request。
 
 ## 📜 许可证
 
